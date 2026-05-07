@@ -22,9 +22,43 @@ public class Leito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codleito;
 
+    private Integer numero;
+
     private String status; // "ocupado" ou "livre"
 
     @ManyToOne
     @JoinColumn(name = "codquartofk")
     private Quarto quarto;
+
+    public Long getCodleito() {
+        return codleito;
+    }
+
+    public void setCodleito(Long codleito) {
+        this.codleito = codleito;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Quarto getQuarto() {
+        return quarto;
+    }
+
+    public void setQuarto(Quarto quarto) {
+        this.quarto = quarto;
+    }
 }

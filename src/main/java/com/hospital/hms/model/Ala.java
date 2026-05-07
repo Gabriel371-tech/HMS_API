@@ -23,4 +23,28 @@ public class Ala {
     private String nome;
 
     private Integer andar;
+
+    public Long getCodala() {
+        return codala;
+    }
+
+    public void setCodala(Long codala) {
+        this.codala = codala;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getAndar() {
+        return andar;
+    }
+
+    public void setAndar(Integer andar) {
+        this.andar = andar;
+    }
 }

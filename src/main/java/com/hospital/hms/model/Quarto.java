@@ -29,4 +29,36 @@ public class Quarto {
     @ManyToOne
     @JoinColumn(name = "codalafk")
     private Ala ala;
+
+    public Long getCodquarto() {
+        return codquarto;
+    }
+
+    public void setCodquarto(Long codquarto) {
+        this.codquarto = codquarto;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Ala getAla() {
+        return ala;
+    }
+
+    public void setAla(Ala ala) {
+        this.ala = ala;
+    }
 }

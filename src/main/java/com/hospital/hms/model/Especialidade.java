@@ -23,4 +23,28 @@ public class Especialidade {
     private String nome;
 
     private String descricao;
+
+    public Long getCodespecialidade() {
+        return codespecialidade;
+    }
+
+    public void setCodespecialidade(Long codespecialidade) {
+        this.codespecialidade = codespecialidade;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

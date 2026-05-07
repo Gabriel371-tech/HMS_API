@@ -32,4 +32,44 @@ public class Paciente {
     @ManyToOne
     @JoinColumn(name = "codtipofk")
     private TipoSanguineo tipoSanguineo;
+
+    public Long getCodpaciente() {
+        return codpaciente;
+    }
+
+    public void setCodpaciente(Long codpaciente) {
+        this.codpaciente = codpaciente;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public TipoSanguineo getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+
+    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
+    }
 }

@@ -23,4 +23,28 @@ public class TipoSanguineo {
     private String tipo;
 
     private String fatorrh;
+
+    public Long getCodtipo() {
+        return codtipo;
+    }
+
+    public void setCodtipo(Long codtipo) {
+        this.codtipo = codtipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getFatorrh() {
+        return fatorrh;
+    }
+
+    public void setFatorrh(String fatorrh) {
+        this.fatorrh = fatorrh;
+    }
 }
