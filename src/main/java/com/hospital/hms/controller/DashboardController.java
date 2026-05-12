@@ -166,6 +166,30 @@ public class DashboardController {
         return "leitos/listar";
     }
 
+    @GetMapping("/leitos/novo")
+    public String novoLeito(HttpSession session, Model model) {
+        if (isNotLogged(session)) return "redirect:/login";
+        model.addAttribute("leito", new Leito());
+        model.addAttribute("quartos", quartoService.listarTodos());
+        return "leitos/form";
+    }
+
+    @GetMapping("/leitos/editar/{id}")
+    public String editarLeito(@PathVariable Long id, HttpSession session, Model model) {
+        if (isNotLogged(session)) return "redirect:/login";
+        Leito leito = leitoService.buscarPorId(id).orElse(null);
+        if (leito == null) return "redirect:/dashboard/leitos";
+        model.addAttribute("leito", leito);
+        model.addAttribute("quartos", quartoService.listarTodos());
+        return "leitos/form";
+    }
+
+    @PostMapping("/leitos/salvar")
+    public String salvarLeito(@ModelAttribute Leito leito) {
+        leitoService.salvar(leito);
+        return "redirect:/dashboard/leitos";
+    }
+
     @GetMapping("/leitos/excluir/{id}")
     public String excluirLeito(@PathVariable Long id, HttpSession session) {
         if (isNotLogged(session)) return "redirect:/login";
