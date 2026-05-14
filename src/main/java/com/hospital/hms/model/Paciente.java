@@ -1,6 +1,7 @@
 package com.hospital.hms.model;
 
 import java.time.LocalDate;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,12 +26,11 @@ public class Paciente {
 
     private String nome;
 
-    private String cpf;
-
+    @Column(name = "datanasc")
     private LocalDate dataNascimento;
 
     @ManyToOne
-    @JoinColumn(name = "codtipofk")
+    @JoinColumn(name = "codtipodk")
     private TipoSanguineo tipoSanguineo;
 
     public Long getCodpaciente() {
@@ -47,14 +47,6 @@ public class Paciente {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public LocalDate getDataNascimento() {

@@ -4,8 +4,9 @@ import java.time.LocalDate;
 
 public record PacienteRequestDTO(
         String nome,
-        String cpf,
+        LocalDate datanasc,
         LocalDate dataNascimento,
+        Long codtipodk,
         Long codtipo,
         TipoSanguineoReferenceDTO tipoSanguineo
 ) {

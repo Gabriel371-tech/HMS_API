@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuartoRepository extends JpaRepository<Quarto, Long> {
+    boolean existsByNumeroAndAlaCodala(Integer numero, Long codala);
+
+    boolean existsByNumeroAndAlaCodalaAndCodquartoNot(Integer numero, Long codala, Long codquarto);
 }

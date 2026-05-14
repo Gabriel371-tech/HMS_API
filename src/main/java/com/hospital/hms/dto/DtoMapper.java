@@ -73,7 +73,6 @@ public final class DtoMapper {
 
     public static Leito toEntity(LeitoRequestDTO dto) {
         Leito leito = new Leito();
-        leito.setNumero(dto.numero());
         leito.setStatus(dto.status());
         leito.setQuarto(toQuartoReference(resolveCodquarto(dto)));
         return leito;
@@ -83,7 +82,6 @@ public final class DtoMapper {
         if (leito == null) return null;
         return new LeitoResponseDTO(
                 leito.getCodleito(),
-                leito.getNumero(),
                 leito.getStatus(),
                 toResponse(leito.getQuarto())
         );
@@ -93,7 +91,6 @@ public final class DtoMapper {
         Medico medico = new Medico();
         medico.setNome(dto.nome());
         medico.setCrm(dto.crm());
-        medico.setTelefone(dto.telefone());
         medico.setEspecialidade(toEspecialidadeReference(resolveCodespecialidade(dto)));
         return medico;
     }
@@ -104,7 +101,6 @@ public final class DtoMapper {
                 medico.getCodmedico(),
                 medico.getNome(),
                 medico.getCrm(),
-                medico.getTelefone(),
                 toResponse(medico.getEspecialidade())
         );
     }
@@ -112,8 +108,7 @@ public final class DtoMapper {
     public static Paciente toEntity(PacienteRequestDTO dto) {
         Paciente paciente = new Paciente();
         paciente.setNome(dto.nome());
-        paciente.setCpf(dto.cpf());
-        paciente.setDataNascimento(dto.dataNascimento());
+        paciente.setDataNascimento(resolveDataNascimento(dto));
         paciente.setTipoSanguineo(toTipoSanguineoReference(resolveCodtipo(dto)));
         return paciente;
     }
@@ -123,7 +118,6 @@ public final class DtoMapper {
         return new PacienteResponseDTO(
                 paciente.getCodpaciente(),
                 paciente.getNome(),
-                paciente.getCpf(),
                 paciente.getDataNascimento(),
                 toResponse(paciente.getTipoSanguineo())
         );
@@ -140,6 +134,98 @@ public final class DtoMapper {
     public static UsuarioResponseDTO toResponse(Usuario usuario) {
         if (usuario == null) return null;
         return new UsuarioResponseDTO(usuario.getId(), usuario.getUsername(), usuario.getNome());
+    }
+
+    public static Consulta toEntity(ConsultaRequestDTO dto) {
+        Consulta consulta = new Consulta();
+        consulta.setDatahora(dto.datahora());
+        consulta.setMotivo(dto.motivo());
+        consulta.setPaciente(toPacienteReference(dto.codpacientefk()));
+        consulta.setMedico(toMedicoReference(dto.codmedicofk()));
+        return consulta;
+    }
+
+    public static ConsultaResponseDTO toResponse(Consulta consulta) {
+        if (consulta == null) return null;
+        return new ConsultaResponseDTO(
+                consulta.getCodconsulta(),
+                consulta.getDatahora(),
+                consulta.getMotivo(),
+                toResponse(consulta.getPaciente()),
+                toResponse(consulta.getMedico())
+        );
+    }
+
+    public static Receita toEntity(ReceitaRequestDTO dto) {
+        Receita receita = new Receita();
+        receita.setValidade(dto.validade());
+        receita.setConsulta(toConsultaReference(dto.codconsultafk()));
+        return receita;
+    }
+
+    public static ReceitaResponseDTO toResponse(Receita receita) {
+        if (receita == null) return null;
+        return new ReceitaResponseDTO(
+                receita.getCodreceita(),
+                receita.getValidade(),
+                toResponse(receita.getConsulta())
+        );
+    }
+
+    public static Medicamento toEntity(MedicamentoRequestDTO dto) {
+        Medicamento medicamento = new Medicamento();
+        medicamento.setNomegenerico(dto.nomegenerico());
+        medicamento.setLaboratorio(dto.laboratorio());
+        return medicamento;
+    }
+
+    public static MedicamentoResponseDTO toResponse(Medicamento medicamento) {
+        if (medicamento == null) return null;
+        return new MedicamentoResponseDTO(
+                medicamento.getCodmedicamento(),
+                medicamento.getNomegenerico(),
+                medicamento.getLaboratorio()
+        );
+    }
+
+    public static ExameConsulta toEntity(ExameConsultaRequestDTO dto) {
+        ExameConsulta exameConsulta = new ExameConsulta();
+        exameConsulta.setId(new ExameConsultaId(dto.codconsultafk(), dto.codexamefk()));
+        exameConsulta.setConsulta(toConsultaReference(dto.codconsultafk()));
+        exameConsulta.setResultadourl(dto.resultadourl());
+        exameConsulta.setDatarealizacao(dto.datarealizacao());
+        return exameConsulta;
+    }
+
+    public static ExameConsultaResponseDTO toResponse(ExameConsulta exameConsulta) {
+        if (exameConsulta == null) return null;
+        return new ExameConsultaResponseDTO(
+                exameConsulta.getId().getCodconsulta(),
+                exameConsulta.getId().getCodexame(),
+                exameConsulta.getResultadourl(),
+                exameConsulta.getDatarealizacao(),
+                toResponse(exameConsulta.getConsulta())
+        );
+    }
+
+    public static ItemReceita toEntity(ItemReceitaRequestDTO dto) {
+        ItemReceita itemReceita = new ItemReceita();
+        itemReceita.setId(new ItemReceitaId(dto.codreceitafk(), dto.codmedicamentofk()));
+        itemReceita.setReceita(toReceitaReference(dto.codreceitafk()));
+        itemReceita.setMedicamento(toMedicamentoReference(dto.codmedicamentofk()));
+        itemReceita.setPosologia(dto.posologia());
+        return itemReceita;
+    }
+
+    public static ItemReceitaResponseDTO toResponse(ItemReceita itemReceita) {
+        if (itemReceita == null) return null;
+        return new ItemReceitaResponseDTO(
+                itemReceita.getId().getCodreceita(),
+                itemReceita.getId().getCodmedicamento(),
+                itemReceita.getPosologia(),
+                toResponse(itemReceita.getReceita()),
+                toResponse(itemReceita.getMedicamento())
+        );
     }
 
     private static Ala toAlaReference(Long id) {
@@ -170,6 +256,41 @@ public final class DtoMapper {
         return tipoSanguineo;
     }
 
+    private static Paciente toPacienteReference(Long id) {
+        if (id == null) return null;
+        Paciente paciente = new Paciente();
+        paciente.setCodpaciente(id);
+        return paciente;
+    }
+
+    private static Medico toMedicoReference(Long id) {
+        if (id == null) return null;
+        Medico medico = new Medico();
+        medico.setCodmedico(id);
+        return medico;
+    }
+
+    private static Consulta toConsultaReference(Long id) {
+        if (id == null) return null;
+        Consulta consulta = new Consulta();
+        consulta.setCodconsulta(id);
+        return consulta;
+    }
+
+    private static Receita toReceitaReference(Long id) {
+        if (id == null) return null;
+        Receita receita = new Receita();
+        receita.setCodreceita(id);
+        return receita;
+    }
+
+    private static Medicamento toMedicamentoReference(Long id) {
+        if (id == null) return null;
+        Medicamento medicamento = new Medicamento();
+        medicamento.setCodmedicamento(id);
+        return medicamento;
+    }
+
     private static Long resolveCodala(QuartoRequestDTO dto) {
         if (dto.codala() != null) return dto.codala();
         return dto.ala() != null ? dto.ala().codala() : null;
@@ -186,7 +307,12 @@ public final class DtoMapper {
     }
 
     private static Long resolveCodtipo(PacienteRequestDTO dto) {
+        if (dto.codtipodk() != null) return dto.codtipodk();
         if (dto.codtipo() != null) return dto.codtipo();
         return dto.tipoSanguineo() != null ? dto.tipoSanguineo().codtipo() : null;
+    }
+
+    private static java.time.LocalDate resolveDataNascimento(PacienteRequestDTO dto) {
+        return dto.datanasc() != null ? dto.datanasc() : dto.dataNascimento();
     }
 }

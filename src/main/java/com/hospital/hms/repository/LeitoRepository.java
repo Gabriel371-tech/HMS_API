@@ -8,4 +8,8 @@ import java.util.List;
 @Repository
 public interface LeitoRepository extends JpaRepository<Leito, Long> {
     List<Leito> findByStatusIgnoreCase(String status);
+
+    long countByQuartoCodquarto(Long codquarto);
+
+    long countByQuartoCodquartoAndCodleitoNot(Long codquarto, Long codleito);
 }

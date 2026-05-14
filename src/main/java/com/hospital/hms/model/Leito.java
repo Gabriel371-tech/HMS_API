@@ -22,8 +22,6 @@ public class Leito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codleito;
 
-    private Integer numero;
-
     private String status; // "ocupado" ou "livre"
 
     @ManyToOne
@@ -36,14 +34,6 @@ public class Leito {
 
     public void setCodleito(Long codleito) {
         this.codleito = codleito;
-    }
-
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
     }
 
     public String getStatus() {

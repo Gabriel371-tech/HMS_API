@@ -2,6 +2,7 @@ package com.hospital.hms.service;
 
 import com.hospital.hms.model.Leito;
 import com.hospital.hms.repository.LeitoRepository;
+import com.hospital.hms.repository.QuartoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -16,6 +17,12 @@ public class LeitoService {
 
     @Autowired
     private LeitoRepository leitoRepository;
+
+    @Autowired
+    private QuartoRepository quartoRepository;
+
+    @Autowired
+    private QuartoService quartoService;
 
     public List<Leito> listarTodos() {
         return leitoRepository.findAll();
@@ -35,6 +42,7 @@ public class LeitoService {
             throw new IllegalArgumentException("Para ocupar um leito, use a operacao especifica de ocupacao.");
         }
 
+        validarCapacidadeDoQuarto(leito, null);
         return leitoRepository.save(leito);
     }
 
@@ -49,6 +57,7 @@ public class LeitoService {
             }
 
             leitoAtualizado.setCodleito(id);
+            validarCapacidadeDoQuarto(leitoAtualizado, id);
             return leitoRepository.save(leitoAtualizado);
         });
     }
@@ -93,6 +102,10 @@ public class LeitoService {
             throw new IllegalArgumentException("Leito nao informado.");
         }
 
+        if (leito.getQuarto() == null || leito.getQuarto().getCodquarto() == null) {
+            throw new IllegalArgumentException("Quarto do leito e obrigatorio.");
+        }
+
         leito.setStatus(normalizarStatus(leito.getStatus()));
     }
 
@@ -109,5 +122,19 @@ public class LeitoService {
         }
 
         throw new IllegalArgumentException("Status de leito invalido. Use livre, ocupado ou manutencao.");
+    }
+
+    private void validarCapacidadeDoQuarto(Leito leito, Long codleitoIgnorado) {
+        var quarto = quartoRepository.findById(leito.getQuarto().getCodquarto())
+                .orElseThrow(() -> new IllegalArgumentException("Quarto informado nao existe."));
+
+        long totalLeitos = codleitoIgnorado == null
+                ? leitoRepository.countByQuartoCodquarto(quarto.getCodquarto())
+                : leitoRepository.countByQuartoCodquartoAndCodleitoNot(quarto.getCodquarto(), codleitoIgnorado);
+
+        int capacidade = quartoService.capacidadePorTipo(quarto.getTipo());
+        if (totalLeitos >= capacidade) {
+            throw new IllegalStateException("Capacidade do quarto excedida para o tipo " + quarto.getTipo() + ".");
+        }
     }
 }

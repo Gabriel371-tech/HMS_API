@@ -26,8 +26,6 @@ public class Medico {
 
     private String crm;
 
-    private String telefone;
-
     @ManyToOne
     @JoinColumn(name = "codespecialidadefk")
     private Especialidade especialidade;
@@ -54,14 +52,6 @@ public class Medico {
 
     public void setCrm(String crm) {
         this.crm = crm;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public Especialidade getEspecialidade() {
