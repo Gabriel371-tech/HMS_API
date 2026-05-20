@@ -42,13 +42,22 @@ public class UsuarioController {
     @GetMapping("/cadastro")
     public String cadastroPage(Model model) {
         model.addAttribute("usuario", new Usuario());
+        model.addAttribute("requisitosSenha", usuarioService.getRequisitosSenha());
         return "cadastro";
     }
 
     @PostMapping("/cadastro")
-    public String cadastrar(@ModelAttribute Usuario usuario) {
-        usuarioService.salvar(usuario);
-        return "redirect:/login";
+    public String cadastrar(@ModelAttribute Usuario usuario, Model model) {
+        try {
+            usuarioService.salvar(usuario);
+            return "redirect:/login";
+        } catch (IllegalArgumentException ex) {
+            usuario.setPassword(null);
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("erro", ex.getMessage());
+            model.addAttribute("requisitosSenha", usuarioService.getRequisitosSenha());
+            return "cadastro";
+        }
     }
 
     @GetMapping("/logout")

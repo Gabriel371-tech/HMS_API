@@ -1,0 +1,1707 @@
+{
+  "info": {
+    "_postman_id": "018b09a7-989f-4b15-950c-4a21da632c55",
+    "name": "HMS",
+    "description": "Collection da API REST do HMS. Use a variavel baseUrl para apontar para a aplicacao local ou para outro ambiente. Os endpoints estao agrupados por recurso e documentam as operacoes principais: GET, POST, PUT e DELETE. Requests POST e PUT ja possuem body raw em JSON com uma estrutura pronta para teste.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "39693151"
+  },
+  "item": [
+    {
+      "name": "Alas",
+      "description": "Endpoints REST de alas. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Alas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de alas. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/alas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "alas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Ala",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de alas pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/alas/{{alaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "alas",
+                "{{alaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Ala",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de alas. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/alas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "alas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Ala Norte\",\n  \"andar\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Ala",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de alas. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/alas/{{alaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "alas",
+                "{{alaId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Ala Norte\",\n  \"andar\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Ala",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de alas identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/alas/{{alaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "alas",
+                "{{alaId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Especialidades",
+      "description": "Endpoints REST de especialidades medicas. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Especialidades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de especialidades medicas. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/especialidades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "especialidades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Especialidade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de especialidades medicas pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/especialidades/{{especialidadeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "especialidades",
+                "{{especialidadeId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Especialidade",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de especialidades medicas. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/especialidades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "especialidades"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Cardiologia\",\n  \"descricao\": \"Atendimento clinico e acompanhamento cardiaco\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Especialidade",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de especialidades medicas. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/especialidades/{{especialidadeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "especialidades",
+                "{{especialidadeId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Cardiologia\",\n  \"descricao\": \"Atendimento clinico e acompanhamento cardiaco\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Especialidade",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de especialidades medicas identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/especialidades/{{especialidadeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "especialidades",
+                "{{especialidadeId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tipos Sanguineos",
+      "description": "Endpoints REST de tipos sanguineos. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Tipos Sanguineos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de tipos sanguineos. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/tipos-sanguineos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tipos-sanguineos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Tipo Sanguineo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de tipos sanguineos pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/tipos-sanguineos/{{tipoSanguineoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tipos-sanguineos",
+                "{{tipoSanguineoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Tipo Sanguineo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de tipos sanguineos. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/tipos-sanguineos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tipos-sanguineos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"A\",\n  \"fatorrh\": \"+\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Tipo Sanguineo",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de tipos sanguineos. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/tipos-sanguineos/{{tipoSanguineoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tipos-sanguineos",
+                "{{tipoSanguineoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipo\": \"A\",\n  \"fatorrh\": \"+\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Tipo Sanguineo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de tipos sanguineos identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/tipos-sanguineos/{{tipoSanguineoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "tipos-sanguineos",
+                "{{tipoSanguineoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Quartos",
+      "description": "Endpoints REST de quartos. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Quartos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de quartos. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/quartos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "quartos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Quarto",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de quartos pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/quartos/{{quartoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "quartos",
+                "{{quartoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Quarto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de quartos. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/quartos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "quartos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numero\": 101,\n  \"tipo\": \"enfermaria\",\n  \"codala\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Quarto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de quartos. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/quartos/{{quartoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "quartos",
+                "{{quartoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numero\": 101,\n  \"tipo\": \"enfermaria\",\n  \"codala\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Quarto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de quartos identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/quartos/{{quartoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "quartos",
+                "{{quartoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Leitos",
+      "description": "Endpoints REST de leitos. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Leitos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de leitos. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/leitos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "leitos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Listar Leitos Disponiveis",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista somente os leitos com status livre. Use para localizar leitos disponiveis para ocupacao. Retorna 200 com um array JSON.",
+            "url": {
+              "raw": "{{baseUrl}}/api/leitos/disponiveis",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "leitos",
+                "disponiveis"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Leito",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de leitos pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/leitos/{{leitoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "leitos",
+                "{{leitoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Leito",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de leitos. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/leitos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "leitos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"livre\",\n  \"codquarto\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Leito",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de leitos. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/leitos/{{leitoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "leitos",
+                "{{leitoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"livre\",\n  \"codquarto\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Leito",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de leitos identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/leitos/{{leitoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "leitos",
+                "{{leitoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Medicos",
+      "description": "Endpoints REST de medicos. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Medicos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de medicos. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Medico",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de medicos pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicos/{{medicoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicos",
+                "{{medicoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Medico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de medicos. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Dr. Carlos Silva\",\n  \"crm\": \"CRM-SP 123456\",\n  \"codespecialidade\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Medico",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de medicos. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicos/{{medicoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicos",
+                "{{medicoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Dr. Carlos Silva\",\n  \"crm\": \"CRM-SP 123456\",\n  \"codespecialidade\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Medico",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de medicos identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicos/{{medicoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicos",
+                "{{medicoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pacientes",
+      "description": "Endpoints REST de pacientes. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Pacientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de pacientes. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Paciente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de pacientes pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Paciente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de pacientes. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Maria Oliveira\",\n  \"dataNascimento\": \"1990-05-10\",\n  \"codtipo\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Paciente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de pacientes. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "{{pacienteId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Maria Oliveira\",\n  \"dataNascimento\": \"1990-05-10\",\n  \"codtipo\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Paciente",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de pacientes identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/pacientes/{{pacienteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "{{pacienteId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Medicamentos",
+      "description": "Endpoints REST de medicamentos. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Medicamentos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de medicamentos. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicamentos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Medicamento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de medicamentos pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicamentos/{{medicamentoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicamentos",
+                "{{medicamentoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Medicamento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de medicamentos. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicamentos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nomegenerico\": \"Dipirona\",\n  \"laboratorio\": \"EMS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Medicamento",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de medicamentos. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicamentos/{{medicamentoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicamentos",
+                "{{medicamentoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nomegenerico\": \"Dipirona\",\n  \"laboratorio\": \"EMS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Medicamento",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de medicamentos identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/medicamentos/{{medicamentoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "medicamentos",
+                "{{medicamentoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Consultas",
+      "description": "Endpoints REST de consultas. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Consultas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de consultas. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/consultas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "consultas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Consulta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de consultas pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/consultas/{{consultaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "consultas",
+                "{{consultaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Consulta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de consultas. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/consultas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "consultas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datahora\": \"2026-05-20T09:30:00\",\n  \"motivo\": \"Consulta de rotina\",\n  \"codpacientefk\": 1,\n  \"codmedicofk\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Consulta",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de consultas. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/consultas/{{consultaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "consultas",
+                "{{consultaId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datahora\": \"2026-05-20T09:30:00\",\n  \"motivo\": \"Consulta de rotina\",\n  \"codpacientefk\": 1,\n  \"codmedicofk\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Consulta",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de consultas identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/consultas/{{consultaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "consultas",
+                "{{consultaId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Receitas",
+      "description": "Endpoints REST de receitas. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Receitas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de receitas. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "receitas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Receita",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de receitas pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/receitas/{{receitaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "receitas",
+                "{{receitaId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Receita",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de receitas. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/receitas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "receitas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"validade\": \"2026-06-20\",\n  \"codconsultafk\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Receita",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de receitas. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/receitas/{{receitaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "receitas",
+                "{{receitaId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"validade\": \"2026-06-20\",\n  \"codconsultafk\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Receita",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de receitas identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/receitas/{{receitaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "receitas",
+                "{{receitaId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Itens de Receita",
+      "description": "Endpoints REST de itens de receita. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Itens de Receita",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de itens de receita. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/itens-receita",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "itens-receita"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Item de Receita",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de itens de receita pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/itens-receita/{{receitaId}}/{{medicamentoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "itens-receita",
+                "{{receitaId}}",
+                "{{medicamentoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Item de Receita",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de itens de receita. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/itens-receita",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "itens-receita"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codreceitafk\": 1,\n  \"codmedicamentofk\": 1,\n  \"posologia\": \"Tomar 1 comprimido a cada 8 horas\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Item de Receita",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de itens de receita. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/itens-receita/{{receitaId}}/{{medicamentoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "itens-receita",
+                "{{receitaId}}",
+                "{{medicamentoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codreceitafk\": 1,\n  \"codmedicamentofk\": 1,\n  \"posologia\": \"Tomar 1 comprimido a cada 8 horas\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Item de Receita",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de itens de receita identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/itens-receita/{{receitaId}}/{{medicamentoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "itens-receita",
+                "{{receitaId}}",
+                "{{medicamentoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Exames da Consulta",
+      "description": "Endpoints REST de exames vinculados a consultas. Inclui as operacoes principais de CRUD: GET para listar/buscar, POST para criar, PUT para atualizar e DELETE para excluir.",
+      "item": [
+        {
+          "name": "GET Listar Exames da Consulta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Lista todos os registros de exames vinculados a consultas. Use para consultar o cadastro completo deste recurso. Retorna 200 com um array JSON, que pode vir vazio quando nao houver registros.",
+            "url": {
+              "raw": "{{baseUrl}}/api/exames-consulta",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "exames-consulta"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Buscar Exame da Consulta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Busca um unico registro de exames vinculados a consultas pela chave informada na URL. Use as variaveis de ambiente da collection para preencher o identificador. Retorna 200 quando encontrar ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/exames-consulta/{{consultaId}}/{{exameId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "exames-consulta",
+                "{{consultaId}}",
+                "{{exameId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Criar Exame da Consulta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Cria um novo registro de exames vinculados a consultas. Envie o body raw em JSON usando a estrutura pronta desta request. Campos de relacionamento devem apontar para IDs ja existentes. Retorna 201 com o registro criado; validacoes podem retornar 400 ou 409 conforme a regra do recurso.",
+            "url": {
+              "raw": "{{baseUrl}}/api/exames-consulta",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "exames-consulta"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codconsultafk\": 1,\n  \"codexamefk\": 1,\n  \"resultadourl\": \"https://exemplo.com/resultados/exame-1.pdf\",\n  \"datarealizacao\": \"2026-05-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT Atualizar Exame da Consulta",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "description": "Atualiza um registro existente de exames vinculados a consultas. O ID principal vem da URL; quando houver IDs tambem no body, mantenha-os coerentes com a URL. Envie o body raw em JSON com a nova representacao do recurso. Retorna 200 com o registro atualizado ou 404 quando nao existir.",
+            "url": {
+              "raw": "{{baseUrl}}/api/exames-consulta/{{consultaId}}/{{exameId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "exames-consulta",
+                "{{consultaId}}",
+                "{{exameId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codconsultafk\": 1,\n  \"codexamefk\": 1,\n  \"resultadourl\": \"https://exemplo.com/resultados/exame-1.pdf\",\n  \"datarealizacao\": \"2026-05-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE Excluir Exame da Consulta",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "description": "Remove o registro de exames vinculados a consultas identificado pela URL. Nao precisa de body. Retorna 204 quando excluir com sucesso, 404 quando nao encontrar e, em alguns recursos, 409 quando uma regra de negocio impedir a exclusao.",
+            "url": {
+              "raw": "{{baseUrl}}/api/exames-consulta/{{consultaId}}/{{exameId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "exames-consulta",
+                "{{consultaId}}",
+                "{{exameId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081",
+      "type": "string"
+    },
+    {
+      "key": "alaId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "especialidadeId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "tipoSanguineoId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "quartoId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "leitoId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "medicoId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "pacienteId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "medicamentoId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "consultaId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "receitaId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "exameId",
+      "value": "1",
+      "type": "string"
+    }
+  ]
+}
