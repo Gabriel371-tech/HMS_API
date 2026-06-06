@@ -24,9 +24,6 @@ public class Usuario {
 
     private String nome;
 
-    @Column(name = "foto_base64", columnDefinition = "TEXT")
-    private String fotoBase64;
-
     public Long getId() {
         return id;
     }
@@ -57,13 +54,5 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getFotoBase64() {
-        return fotoBase64;
-    }
-
-    public void setFotoBase64(String fotoBase64) {
-        this.fotoBase64 = fotoBase64;
     }
 }
