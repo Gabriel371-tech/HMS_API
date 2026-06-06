@@ -77,3 +77,4 @@ Importe o arquivo `insomnia_hms_collection.json` localizado na raiz deste projet
 
 ---
 Desenvolvido para facilitar a gestão hospitalar com eficiência e segurança.
+Por Gabriel da Silva Siqueira e Gabriel Leonardo Morales Lopes
