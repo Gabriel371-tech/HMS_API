@@ -22,6 +22,8 @@ public class Leito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codleito;
 
+    private String numero;
+
     private String status; // "ocupado" ou "livre"
 
     @ManyToOne
