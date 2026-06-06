@@ -1,4 +1,4 @@
 package com.hospital.hms.dto.response;
 
-public record UsuarioResponseDTO(Long id, String username, String nome) {
+public record UsuarioResponseDTO(Long id, String username, String nome, String fotoBase64) {
 }

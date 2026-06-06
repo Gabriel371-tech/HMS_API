@@ -133,7 +133,12 @@ public final class DtoMapper {
 
     public static UsuarioResponseDTO toResponse(Usuario usuario) {
         if (usuario == null) return null;
-        return new UsuarioResponseDTO(usuario.getId(), usuario.getUsername(), usuario.getNome());
+        return new UsuarioResponseDTO(
+                usuario.getId(),
+                usuario.getUsername(),
+                usuario.getNome(),
+                usuario.getFotoBase64()
+        );
     }
 
     public static Consulta toEntity(ConsultaRequestDTO dto) {
