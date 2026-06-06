@@ -1,10 +1,13 @@
 package com.hospital.hms.controller;
 
 import com.hospital.hms.dto.DtoMapper;
+import com.hospital.hms.dto.request.UsuarioRequestDTO;
 import com.hospital.hms.model.Usuario;
 import com.hospital.hms.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +51,25 @@ public class UsuarioController {
         }
     }
 
+    @PostMapping(value = "/api/auth/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<?> loginApi(@RequestBody UsuarioRequestDTO request, HttpSession session) {
+        if (request == null || request.username() == null || request.password() == null) {
+            return ResponseEntity.badRequest().body(Map.of("erro", "Usuario e senha sao obrigatorios."));
+        }
+
+        Usuario usuario = usuarioService.autenticar(request.username(), request.password());
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("erro", "Credenciais invalidas."));
+        }
+
+        session.setAttribute("usuarioLogado", usuario);
+        return ResponseEntity.ok(Map.of(
+                "authenticated", true,
+                "user", DtoMapper.toResponse(usuario)
+        ));
+    }
+
     @GetMapping("/cadastro")
     public String cadastroPage(Model model) {
         model.addAttribute("usuario", new Usuario());
@@ -66,6 +88,24 @@ public class UsuarioController {
             model.addAttribute("erro", ex.getMessage());
             model.addAttribute("requisitosSenha", usuarioService.getRequisitosSenha());
             return "cadastro";
+        }
+    }
+
+    @PostMapping(value = "/api/auth/cadastro", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<?> cadastrarApi(@RequestBody UsuarioRequestDTO request) {
+        if (request == null) {
+            return ResponseEntity.badRequest().body(Map.of("erro", "Usuario nao informado."));
+        }
+
+        try {
+            Usuario usuario = usuarioService.salvar(DtoMapper.toEntity(request));
+            return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
+                    "registered", true,
+                    "user", DtoMapper.toResponse(usuario)
+            ));
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(Map.of("erro", ex.getMessage()));
         }
     }
 

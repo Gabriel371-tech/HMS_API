@@ -51,6 +51,10 @@ public class UsuarioService {
     public Usuario salvar(Usuario usuario) {
         validarUsuario(usuario);
 
+        if (usuarioRepository.findByUsername(usuario.getUsername()).isPresent()) {
+            throw new IllegalArgumentException("Nome de usuario ja cadastrado.");
+        }
+
         if (usuario.getPassword() != null && !isBCrypt(usuario.getPassword())) {
             validarSenha(usuario.getPassword());
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
