@@ -1,4 +1,4 @@
-# <p align="center"><img src="src/main/resources/static/images/logo.png" alt="HMS Logo" width="200"></p>
+# <p align="center"><img src="src/main/resources/static/images/HMS.png" alt="HMS Logo" width="200"></p>
 
 # HMS - Hospital Management System
 
@@ -77,3 +77,5 @@ Importe o arquivo `insomnia_hms_collection.json` localizado na raiz deste projet
 
 ---
 Desenvolvido para facilitar a gestão hospitalar com eficiência e segurança.
+
+Por Gabriel da Silva Siqueira e Gabriel Leonardo Morales Lopes
